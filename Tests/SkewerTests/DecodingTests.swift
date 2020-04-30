@@ -1,7 +1,7 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
-@testable import Skewer
 import XCTest
+@testable import Skewer
 
 final class DecodingTests: XCTestCase {
 	var decoder: JSONDecoder!
