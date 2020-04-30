@@ -6,13 +6,13 @@ Provides support for "kebab-case" formatted (as opposed to just "snake_case" for
 
 ```swift
 struct Website: Encodable {
-    let homepageURLString = "http://www.apple.com"
+    let homepageURLString: String
 }
 
 let encoder = JSONEncoder()
 encoder.keyEncodingStrategy = .convertToKebabCase
 
-let website = Website()
+let website = Website(homepageURLString: "http://www.apple.com")
 let data = try! encoder.encode(website)
 let json = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
 let convertedKey = json.keys.first!
