@@ -36,6 +36,15 @@ let downloadCount = app.downloadCount
 // 999
 ```
 
+## Installation
+**Using the Swift Package Manager**
+
+Add Skewer as a dependency to your `Package.swift` file. For more information, see the [Swift Package Manager documentation](https://github.com/apple/swift-package-manager/tree/master/Documentation).
+
+```swift
+.package(url: "https://github.com/Fleuronic/Skewer", from: "1.0.0")
+```
+
 ## License
 
 Skewer is available under the MIT license. See the LICENSE file for more info.
