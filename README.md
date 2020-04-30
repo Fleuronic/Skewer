@@ -35,3 +35,7 @@ let app = try! decoder.decode(App.self, from: data)
 let downloadCount = app.downloadCount
 // 999
 ```
+
+## License
+
+Skewer is available under the MIT license. See the LICENSE file for more info.
