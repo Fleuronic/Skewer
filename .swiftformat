@@ -19,7 +19,7 @@
 --indentcase false
 --linebreaks lf
 --maxwidth none
---nospaceoperators 
+--nospaceoperators ..<
 --octalgrouping 4,8
 --operatorfunc spaced
 --patternlet hoist
