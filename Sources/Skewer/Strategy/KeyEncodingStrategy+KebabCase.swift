@@ -3,10 +3,10 @@
 import Foundation
 
 public extension JSONEncoder.KeyEncodingStrategy {
-	static var convertToKebabCase: Self {
+	static func convertToKebabCase(componentTransform: ComponentTransform = .lowercase) -> Self {
 		.custom { keys in
 			let stringValue = keys.last!.stringValue
-			let convertedStringValue = stringValue.convertedToKebabCase
+			let convertedStringValue = stringValue.convertedToKebabCase(componentTransform: componentTransform)
 			return AnyKey(stringValue: convertedStringValue)!
 		}
 	}
@@ -14,7 +14,7 @@ public extension JSONEncoder.KeyEncodingStrategy {
 
 // MARK: -
 private extension String {
-	var convertedToKebabCase: Self {
+	func convertedToKebabCase(componentTransform: JSONEncoder.KeyEncodingStrategy.ComponentTransform) -> Self {
 		guard !isEmpty else { return self }
 
 		var wordStart = startIndex
@@ -43,10 +43,20 @@ private extension String {
 		}
 		wordRanges.append(wordStart..<searchRange.upperBound)
 
-		let words = wordRanges.map { self[$0] }
-		let lowercaseWords = words.map { $0.lowercased() }
-		let result = lowercaseWords.joined(separator: .hyphen)
+		return wordRanges
+			.map { self[$0] }
+			.map { $0.applying(componentTransform) }
+			.joined(separator: .hyphen)
+	}
+}
 
-		return result
+private extension Substring {
+	func applying(_ componentTransform: JSONEncoder.KeyEncodingStrategy.ComponentTransform) -> String {
+		switch componentTransform {
+		case .capitalize:
+			return capitalized
+		case .lowercase:
+			return lowercased()
+		}
 	}
 }
