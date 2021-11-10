@@ -19,7 +19,7 @@ extension EncodingTests {
 		}
 
 		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertToKebabCase()
+		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .lowercase)
 
 		let person = Person(name: "Tim Cook")
 		let data = try! encoder.encode(person)
@@ -34,13 +34,28 @@ extension EncodingTests {
 		}
 
 		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .capitalize)
+		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .capitalize(prefix: false))
 
 		let company = Company(originalIncorporationName: "Apple Computer, Inc.")
 		let data = try! encoder.encode(company)
 		let convertedKey = data.firstEncodedJSONKey!
 
 		XCTAssertEqual(convertedKey, "Original-Incorporation-Name")
+	}
+
+	func testCapitalizedPrefixedComponents() {
+		struct Company: Encodable {
+			let originalIncorporationName: String
+		}
+
+		let encoder = JSONEncoder()
+		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .capitalize(prefix: true))
+
+		let company = Company(originalIncorporationName: "Apple Computer, Inc.")
+		let data = try! encoder.encode(company)
+		let convertedKey = data.firstEncodedJSONKey!
+
+		XCTAssertEqual(convertedKey, "X-Original-Incorporation-Name")
 	}
 
 	func testLowercasedComponents() {
