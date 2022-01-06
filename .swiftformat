@@ -4,6 +4,7 @@
 --disable hoistPatternLet
 --disable sortedImports
 --disable trailingCommas
+--disable preferKeypath
 
 --decimalgrouping ignore
 --ifdef outdent
