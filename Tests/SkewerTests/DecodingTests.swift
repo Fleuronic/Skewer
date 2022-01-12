@@ -4,20 +4,13 @@ import XCTest
 @testable import Skewer
 
 final class DecodingTests: XCTestCase {
-	var decoder: JSONDecoder!
-}
-
-// MARK: -
-extension DecodingTests {
-	static var allTests = [
-		("testSingleComponent", testSingleComponent),
-		("testMultipleComponents", testMultipleComponents)
-	]
-
 	func testSingleComponent() {
 		struct City: Decodable {
 			let name: String
 		}
+
+		let decoder = JSONDecoder()
+		decoder.keyDecodingStrategy = .convertFromKebabCase
 
 		let name = "Cupertino"
 		let json = ["name": name]
@@ -32,18 +25,15 @@ extension DecodingTests {
 			let downloadCount: Int
 		}
 
+		let decoder = JSONDecoder()
+		decoder.keyDecodingStrategy = .convertFromKebabCase
+
 		let downloadCount = 999
 		let json = ["download-count": downloadCount]
 		let data = try! Data(json: json)
 		let app = try! decoder.decode(App.self, from: data)
 
 		XCTAssertEqual(app.downloadCount, downloadCount)
-	}
-
-	// MARK: XCTestCase
-	override func setUp() {
-		decoder = JSONDecoder()
-		decoder.keyDecodingStrategy = .convertFromKebabCase
 	}
 }
 

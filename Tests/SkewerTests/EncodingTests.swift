@@ -3,16 +3,7 @@
 import XCTest
 @testable import Skewer
 
-final class EncodingTests: XCTestCase {}
-
-// MARK: -
-extension EncodingTests {
-	static var allTests = [
-		("testSingleComponent", testSingleComponent),
-		("testCapitalizedComponents", testCapitalizedComponents),
-		("testLowercasedComponents", testLowercasedComponents)
-	]
-
+final class EncodingTests: XCTestCase {
 	func testSingleComponent() {
 		struct Person: Encodable {
 			let name: String
