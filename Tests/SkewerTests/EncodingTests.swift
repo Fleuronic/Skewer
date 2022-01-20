@@ -1,7 +1,7 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import XCTest
-@testable import Skewer
+import Skewer
 
 final class EncodingTests: XCTestCase {
 	func testSingleComponent() {
@@ -25,7 +25,7 @@ final class EncodingTests: XCTestCase {
 		}
 
 		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .capitalize(prefix: false))
+		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .capitalize())
 
 		let company = Company(originalIncorporationName: "Apple Computer, Inc.")
 		let data = try! encoder.encode(company)
@@ -40,7 +40,7 @@ final class EncodingTests: XCTestCase {
 		}
 
 		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .capitalize(prefix: true))
+		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .capitalize(prefix: "X"))
 
 		let company = Company(originalIncorporationName: "Apple Computer, Inc.")
 		let data = try! encoder.encode(company)
@@ -62,6 +62,21 @@ final class EncodingTests: XCTestCase {
 		let convertedKey = data.firstEncodedJSONKey!
 
 		XCTAssertEqual(convertedKey, "original-incorporation-name")
+	}
+
+	func testSeparotor() {
+		struct Company: Encodable {
+			let originalIncorporationName: String
+		}
+
+		let encoder = JSONEncoder()
+		encoder.keyEncodingStrategy = .convertedToSeparatedCase(with: ".")
+
+		let company = Company(originalIncorporationName: "Apple Computer, Inc.")
+		let data = try! encoder.encode(company)
+		let convertedKey = data.firstEncodedJSONKey!
+
+		XCTAssertEqual(convertedKey, "original.incorporation.name")
 	}
 
 	func testConversion() {

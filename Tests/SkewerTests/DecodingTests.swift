@@ -1,7 +1,7 @@
 // Copyright © Fleuronic LLC. All rights reserved.
 
 import XCTest
-@testable import Skewer
+import Skewer
 
 final class DecodingTests: XCTestCase {
 	func testSingleComponent() {
@@ -30,6 +30,22 @@ final class DecodingTests: XCTestCase {
 
 		let downloadCount = 999
 		let json = ["download-count": downloadCount]
+		let data = try! Data(json: json)
+		let app = try! decoder.decode(App.self, from: data)
+
+		XCTAssertEqual(app.downloadCount, downloadCount)
+	}
+
+	func testSeparator() {
+		struct App: Decodable {
+			let downloadCount: Int
+		}
+
+		let decoder = JSONDecoder()
+		decoder.keyDecodingStrategy = .convertedFromSeparatedCase(with: ".")
+
+		let downloadCount = 999
+		let json = ["download.count": downloadCount]
 		let data = try! Data(json: json)
 		let app = try! decoder.decode(App.self, from: data)
 
