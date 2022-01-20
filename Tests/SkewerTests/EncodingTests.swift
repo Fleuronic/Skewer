@@ -10,7 +10,7 @@ final class EncodingTests: XCTestCase {
 		}
 
 		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .lowercase)
+		encoder.keyEncodingStrategy = .convertToKebabCase(using: .lowercase)
 
 		let person = Person(name: "Tim Cook")
 		let data = try! encoder.encode(person)
@@ -25,7 +25,7 @@ final class EncodingTests: XCTestCase {
 		}
 
 		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .capitalize())
+		encoder.keyEncodingStrategy = .convertToKebabCase(using: .capitalize())
 
 		let company = Company(originalIncorporationName: "Apple Computer, Inc.")
 		let data = try! encoder.encode(company)
@@ -40,7 +40,7 @@ final class EncodingTests: XCTestCase {
 		}
 
 		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .capitalize(prefix: "X"))
+		encoder.keyEncodingStrategy = .convertToKebabCase(using: .capitalize(prefix: "X"))
 
 		let company = Company(originalIncorporationName: "Apple Computer, Inc.")
 		let data = try! encoder.encode(company)
@@ -55,7 +55,7 @@ final class EncodingTests: XCTestCase {
 		}
 
 		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertToKebabCase(componentTransform: .lowercase)
+		encoder.keyEncodingStrategy = .convertToKebabCase(using: .lowercase)
 
 		let company = Company(originalIncorporationName: "Apple Computer, Inc.")
 		let data = try! encoder.encode(company)
@@ -70,7 +70,7 @@ final class EncodingTests: XCTestCase {
 		}
 
 		let encoder = JSONEncoder()
-		encoder.keyEncodingStrategy = .convertedToSeparatedCase(with: ".")
+		encoder.keyEncodingStrategy = .convertToCase(separatedBy: ".")
 
 		let company = Company(originalIncorporationName: "Apple Computer, Inc.")
 		let data = try! encoder.encode(company)

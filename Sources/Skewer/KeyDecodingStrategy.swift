@@ -4,12 +4,12 @@ import Foundation
 
 public extension JSONDecoder.KeyDecodingStrategy {
 	static var convertFromKebabCase: Self {
-		convertedFromSeparatedCase(with: .hyphen)
+		convertFromCase(separatedBy: .hyphen)
 	}
 
-	static func convertedFromSeparatedCase(with separator: Character) -> Self {
+	static func convertFromCase(separatedBy separator: Character) -> Self {
 		convert {
-			$0.convertedFromSeparatedCase(with: separator)
+			$0.convertedFromCase(separatedBy: separator)
 		}
 	}
 	

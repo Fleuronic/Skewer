@@ -3,7 +3,7 @@
 import Foundation
 
 extension String {
-	func convertedToSeparatedCase(with separator: String, componentTransform: JSONEncoder.KeyEncodingStrategy.ComponentTransform) -> Self {
+	func convertedToCase(separatedBy separator: String, using componentTransform: JSONEncoder.KeyEncodingStrategy.ComponentTransform) -> Self {
 		guard !isEmpty else { return self }
 
 		var wordStart = startIndex
@@ -43,7 +43,7 @@ extension String {
 		return components.joined(separator: separator)
 	}
 
-	func convertedFromSeparatedCase(with separator: Character) -> Self {
+	func convertedFromCase(separatedBy separator: Character) -> Self {
 		guard !isEmpty else { return self }
 
 		let components = split(separator: separator)

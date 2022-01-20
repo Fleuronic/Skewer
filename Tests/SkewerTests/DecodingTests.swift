@@ -42,7 +42,7 @@ final class DecodingTests: XCTestCase {
 		}
 
 		let decoder = JSONDecoder()
-		decoder.keyDecodingStrategy = .convertedFromSeparatedCase(with: ".")
+		decoder.keyDecodingStrategy = .convertFromCase(separatedBy: ".")
 
 		let downloadCount = 999
 		let json = ["download.count": downloadCount]

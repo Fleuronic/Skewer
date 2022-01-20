@@ -3,13 +3,13 @@
 import Foundation
 
 public extension JSONEncoder.KeyEncodingStrategy {
-	static func convertToKebabCase(componentTransform: ComponentTransform = .lowercase) -> Self {
-		convertedToSeparatedCase(with: .hyphen, componentTransform: componentTransform)
+	static func convertToKebabCase(using componentTransform: ComponentTransform = .lowercase) -> Self {
+		convertToCase(separatedBy: .hyphen, using: componentTransform)
 	}
 
-	static func convertedToSeparatedCase(with separator: String, componentTransform: ComponentTransform = .lowercase) -> Self {
+	static func convertToCase(separatedBy separator: String, using componentTransform: ComponentTransform = .lowercase) -> Self {
 		convert {
-			$0.convertedToSeparatedCase(with: separator, componentTransform: componentTransform)
+			$0.convertedToCase(separatedBy: separator, using: componentTransform)
 		}
 	}
 
