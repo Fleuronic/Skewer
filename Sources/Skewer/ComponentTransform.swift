@@ -4,19 +4,19 @@ import Foundation
 
 public extension JSONEncoder.KeyEncodingStrategy {
 	enum ComponentTransform {
-		case capitalize(prefix: Bool)
+		case capitalize(prefix: String? = nil)
 		case lowercase
 	}
 }
 
 // MARK: -
 extension JSONEncoder.KeyEncodingStrategy.ComponentTransform {
-	var hasPrefix: Bool {
+	var prefix: String? {
 		switch self {
 		case .capitalize(let prefix):
 			return prefix
 		case .lowercase:
-			return false
+			return nil
 		}
 	}
 }
