@@ -63,6 +63,21 @@ final class EncodingTests: XCTestCase {
 
 		XCTAssertEqual(convertedKey, "original-incorporation-name")
 	}
+
+	func testConversion() {
+		struct Company: Encodable {
+			let name: String
+		}
+
+		let encoder = JSONEncoder()
+		encoder.keyEncodingStrategy = .convert { $0.uppercased() }
+
+		let company = Company(name: "Apple")
+		let data = try! encoder.encode(company)
+		let convertedKey = data.firstEncodedJSONKey!
+
+		XCTAssertEqual(convertedKey, "NAME")
+	}
 }
 
 // MARK: -

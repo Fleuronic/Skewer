@@ -35,6 +35,22 @@ final class DecodingTests: XCTestCase {
 
 		XCTAssertEqual(app.downloadCount, downloadCount)
 	}
+
+	func testConversion() {
+		struct City: Decodable {
+			let name: String
+		}
+
+		let decoder = JSONDecoder()
+		decoder.keyDecodingStrategy = .convert { $0.lowercased() }
+
+		let name = "Cupertino"
+		let json = ["NAME": name]
+		let data = try! Data(json: json)
+		let city = try! decoder.decode(City.self, from: data)
+
+		XCTAssertEqual(city.name, name)
+	}
 }
 
 // MARK: -
