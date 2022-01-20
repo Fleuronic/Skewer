@@ -2,17 +2,8 @@
 
 import Foundation
 
-public extension JSONEncoder.KeyEncodingStrategy {
-	static func convertToKebabCase(componentTransform: ComponentTransform) -> Self {
-		convert {
-			$0.convertedToKebabCase(componentTransform: componentTransform)
-		}
-	}
-}
-
-// MARK: -
-private extension String {
-	func convertedToKebabCase(componentTransform: JSONEncoder.KeyEncodingStrategy.ComponentTransform) -> Self {
+extension String {
+	func convertedToSeparatedCase(with separator: String, componentTransform: JSONEncoder.KeyEncodingStrategy.ComponentTransform) -> Self {
 		guard !isEmpty else { return self }
 
 		var wordStart = startIndex
@@ -45,18 +36,28 @@ private extension String {
 			.map { self[$0] }
 			.map { $0.applying(componentTransform) }
 
-		if componentTransform.hasPrefix {
-			components = [.prefix] + components
+		if let prefix = componentTransform.prefix {
+			components = [prefix] + components
 		}
 
-		return components.joined(separator: .hyphen)
+		return components.joined(separator: separator)
+	}
+
+	func convertedFromSeparatedCase(with separator: Character) -> Self {
+		guard !isEmpty else { return self }
+
+		let components = split(separator: separator)
+		if components.count == 1 {
+			return self
+		} else {
+			let lowercasedStrings = [components[0].lowercased()]
+			let capitalizedStrings = components[1...].map { $0.capitalized }
+			return (lowercasedStrings + capitalizedStrings).joined()
+		}
 	}
 }
 
-private extension String {
-	static let prefix = "X"
-}
-
+// MARK: -
 private extension Substring {
 	func applying(_ componentTransform: JSONEncoder.KeyEncodingStrategy.ComponentTransform) -> String {
 		switch componentTransform {
