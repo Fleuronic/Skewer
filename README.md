@@ -1,5 +1,22 @@
 # Skewer 🍡
 
+<div align="center">
+
+[![Release](https://img.shields.io/github/v/release/Fleuronic/Skewer?cache-seconds=0)](https://github.com/Fleuronic/Skewer/releases/latest)
+[![License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Fleuronic/Skewer/main/LICENSE)
+[![Issues](https://img.shields.io/github/issues/Fleuronic/Skewer?logo=github&cache-seconds=0)](https://github.com/Fleuronic/Skewer/issues)
+[![Downloads](https://img.shields.io/github/downloads/Fleuronic/Skewer/total?cache-seconds=0)](https://github.com/Fleuronic/Skewer/releases)
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFleuronic%2FSkewer%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/Fleuronic/Skewer)
+
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2FFleuronic%2FSkewer%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/Fleuronic/Skewer)
+
+[![Tweet](https://img.shields.io/twitter/url?url=https%3A%2F%2Fshields.io)](https://twitter.com/intent/tweet?text=Check%20out%20github.com/Fleuronic/Skewer%20from%20@Fleuronic%2C%20a%20Swift%20wrapper%20around%20the%20@JSONBin%20API.)
+[![Follow](https://img.shields.io/twitter/follow/Fleuronic?label=@Fleuronic&cache-seconds=0)](https://twitter.com/intent/follow?screen_name=Fleuronic)
+[![Github](https://img.shields.io/github/followers/jordanekay?label=@jordanekay&style=social&cache-seconds=0)](https://github.com/jordanekay)
+	
+</div>
+
 Provides support for "kebab-case" formatted (as opposed to just "snake_case" formatted) coding keys for `JSONEncoder` and `JSONDecoder`.
 
 ## Encoding
