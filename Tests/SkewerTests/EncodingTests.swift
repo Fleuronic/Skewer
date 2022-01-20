@@ -64,7 +64,7 @@ final class EncodingTests: XCTestCase {
 		XCTAssertEqual(convertedKey, "original-incorporation-name")
 	}
 
-	func testSeparotor() {
+	func testSeparator() {
 		struct Company: Encodable {
 			let originalIncorporationName: String
 		}
