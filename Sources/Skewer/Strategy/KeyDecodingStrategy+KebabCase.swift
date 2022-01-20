@@ -4,11 +4,7 @@ import Foundation
 
 public extension JSONDecoder.KeyDecodingStrategy {
 	static var convertFromKebabCase: Self {
-		.custom { keys in
-			let stringValue = keys.last!.stringValue
-			let convertedStringValue = stringValue.convertedFromKebabCase
-			return AnyKey(stringValue: convertedStringValue)!
-		}
+		convert(using: \.convertedFromKebabCase)
 	}
 }
 

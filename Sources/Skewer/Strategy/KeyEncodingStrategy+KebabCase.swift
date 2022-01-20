@@ -4,10 +4,8 @@ import Foundation
 
 public extension JSONEncoder.KeyEncodingStrategy {
 	static func convertToKebabCase(componentTransform: ComponentTransform) -> Self {
-		.custom { keys in
-			let stringValue = keys.last!.stringValue
-			let convertedStringValue = stringValue.convertedToKebabCase(componentTransform: componentTransform)
-			return AnyKey(stringValue: convertedStringValue)!
+		convert {
+			$0.convertedToKebabCase(componentTransform: componentTransform)
 		}
 	}
 }
