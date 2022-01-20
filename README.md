@@ -42,7 +42,7 @@ let downloadCount = app.downloadCount
 Add Skewer as a dependency to your `Package.swift` file. For more information, see the [Swift Package Manager documentation](https://github.com/apple/swift-package-manager/tree/master/Documentation).
 
 ```swift
-.package(url: "https://github.com/Fleuronic/Skewer", from: "1.0.0")
+.package(url: "https://github.com/Fleuronic/Skewer", from: "3.0.0")
 ```
 
 ## License
